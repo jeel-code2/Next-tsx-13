@@ -10,7 +10,7 @@ const usersPage = async () => {
   const users: User [] = await res.json();
   return (
     <>
-      <h1>Users</h1>
+      <h1 className='text-6xl p-6 my-4 text-gray-200 hover:text-gray-100 font-extrabold'>Users</h1>
       <ul>
         {users.map(user => <li key={user.id}>{user.name}</li>)}
       </ul>
