@@ -5,6 +5,7 @@ import { Geist } from 'next/font/google'
 import Footer from '@/components/Footer'
 import MouseGlow from '@/components/MouseGlow'
 import { cn } from "@/lib/utils";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <NavBar />
         {children}
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   )
