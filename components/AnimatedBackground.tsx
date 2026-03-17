@@ -29,19 +29,19 @@ export default function AnimatedBackground() {
       speed: number;
       opacity: number;
 
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(w: number, h: number) {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
         this.length = Math.random() * 20 + 10;
         this.speed = Math.random() * 2 + 1;
         this.opacity = Math.random() * 0.3 + 0.1;
       }
 
-      update() {
+      update(w: number, h: number) {
         this.y += this.speed;
-        if (this.y > canvas.height) {
+        if (this.y > h) {
           this.y = -this.length;
-          this.x = Math.random() * canvas.width;
+          this.x = Math.random() * w;
         }
       }
 
@@ -61,7 +61,7 @@ export default function AnimatedBackground() {
       particles = [];
       const particleCount = Math.floor(window.innerWidth / 15);
       for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+        particles.push(new Particle(canvas.width, canvas.height));
       }
     };
 
@@ -73,7 +73,7 @@ export default function AnimatedBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p) => {
-        p.update();
+        p.update(canvas.width, canvas.height);
         p.draw();
       });
 
