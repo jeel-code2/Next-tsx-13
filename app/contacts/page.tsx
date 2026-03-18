@@ -24,19 +24,19 @@ export default function ContactsPage() {
                   {
                     icon: <Phone className="h-6 w-6 text-sky-400" />,
                     title: "Call Us",
-                    content: "+255 (0) XXX XXX XXX",
+                    content: "+255 (0) 753 107 107",
                     sub: "Mon - Sat, 8am - 8pm"
                   },
                   {
                     icon: <Mail className="h-6 w-6 text-sky-400" />,
                     title: "Email Us",
-                    content: "info@jeelimited.co.tz",
+                    content: "info@jeel.co.tz",
                     sub: "Response within 24h"
                   },
                   {
                     icon: <MapPin className="h-6 w-6 text-sky-400" />,
                     title: "Our Location",
-                    content: "Dodoma / Dar es Salaam",
+                    content: "Dodoma, 7th Road HQ",
                     sub: "Main Office Location"
                   },
                   {
