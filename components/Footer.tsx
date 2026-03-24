@@ -30,21 +30,21 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-bold mb-6">Company</h3>
             <ul className="space-y-3">
-              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
-              <li><Link href="/contacts" className="text-gray-400 hover:text-white transition-colors">Contacts</Link></li>
-              <li><Link href="/careers" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
+              <li><Link href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="#contacts" className="text-gray-400 hover:text-white transition-colors">Contacts</Link></li>
+              <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-white font-bold mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><Link href="/services/pharmacy" className="text-gray-400 hover:text-white transition-colors">Pharmacy & Cosmetics</Link></li>
-              <li><Link href="/services/finance" className="text-gray-400 hover:text-white transition-colors">Financial Services</Link></li>
-              <li><Link href="/services/insurance" className="text-gray-400 hover:text-white transition-colors">Insurance Agency</Link></li>
-              <li><Link href="/services/tendering" className="text-gray-400 hover:text-white transition-colors">Tendering Services</Link></li>
-              <li><Link href="/services/supplies" className="text-gray-400 hover:text-white transition-colors">Home Supplies</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Pharmacy & Cosmetics</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Financial Services</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Insurance Agency</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Tendering Services</Link></li>
+              <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Home Supplies</Link></li>
             </ul>
           </div>
 
@@ -69,8 +69,8 @@ const Footer = () => {
             © {new Date().getFullYear()} JEEL Company Limited. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

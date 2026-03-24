@@ -5,12 +5,9 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
   Sheet,
@@ -22,81 +19,86 @@ import {
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "Our Services", href: "#services" },
+    { label: "About Us", href: "#about" },
+    { label: "Contacts", href: "#contacts" },
+  ];
+
+  const UnderlineEffect = "absolute -bottom-1 left-4 right-4 h-0.5 bg-sky-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left";
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-black tracking-tighter text-sky-400">
+    <header className="fixed top-0 z-50 w-full bg-transparent">
+      <div className="container flex h-20 items-center justify-between px-6 md:px-8 max-w-7xl mx-auto">
+        <div className="flex items-center gap-12">
+          <Link href="#home" className="flex items-center space-x-2">
+            <span className="text-3xl font-black tracking-tighter text-sky-400">
               JEEL
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform")}>
-                  <Link href="/">
-                    Home
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform")}>
-                  <Link href="/services">
-                    Our Services
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform")}>
-                  <Link href="/about">
-                    About Us
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform")}>
-                  <Link href="/contacts">
-                    Contacts
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <nav className="hidden md:flex items-center gap-2">
+            {navItems.map((item) => (
+              <Link 
+                key={item.label}
+                href={item.href} 
+                className="group relative px-4 py-2 text-sm font-semibold text-gray-300 hover:text-white transition-colors"
+              >
+                {item.label}
+                <span className={UnderlineEffect} />
+              </Link>
+            ))}
+          </nav>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" className="hidden md:flex text-gray-300 hover:text-white" asChild>
-            <Link href="/login">Staff Login</Link>
-          </Button>
-          <Button className="hidden md:flex bg-sky-500 hover:bg-sky-600 font-bold" asChild>
-            <Link href="/contacts">Get In Touch</Link>
-          </Button>
+        <div className="flex items-center gap-6">
+          <Link 
+            href="/login" 
+            className="group relative hidden md:flex text-sm font-semibold text-gray-300 hover:text-white px-4 py-2 transition-colors"
+          >
+            Staff Login
+            <span className="absolute -bottom-1 left-4 right-4 h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+          </Link>
+          
+          <Link 
+            href="#contacts" 
+            className="hidden md:flex items-center justify-center px-8 py-3 rounded-xl border border-sky-400/50 text-sky-400 font-bold hover:bg-sky-400 hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(14,165,233,0.1)]"
+          >
+            Get In Touch
+          </Link>
 
           {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="md:hidden text-white bg-white/5 hover:bg-white/10 rounded-full h-12 w-12">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-background border-l border-border/40">
-              <SheetHeader>
-                <SheetTitle className="text-sky-400">JEEL Menu</SheetTitle>
+            <SheetContent side="right" className="bg-slate-950/95 backdrop-blur-xl border-l border-white/10 text-white w-full sm:max-w-md">
+              <SheetHeader className="text-left">
+                <SheetTitle className="text-sky-400 text-2xl font-black">JEEL MENU</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-8">
-                <Link href="/" className="text-lg font-medium hover:text-sky-400 transition-colors">Home</Link>
-                <Link href="/about" className="text-lg font-medium hover:text-sky-400 transition-colors">About Us</Link>
-                <Link href="/services" className="text-lg font-medium hover:text-sky-400 transition-colors">Our Services</Link>
-                <Link href="/contacts" className="text-lg font-medium hover:text-sky-400 transition-colors">Contacts</Link>
-                <hr className="border-border/40" />
-                <Link href="/login" className="text-lg font-medium text-muted-foreground hover:text-sky-400 transition-colors">Staff Login</Link>
-                <Button className="mt-4 bg-sky-500 hover:bg-sky-600 font-bold" asChild>
-                  <Link href="/contacts">Get Started</Link>
-                </Button>
+              <nav className="flex flex-col gap-8 mt-16">
+                {navItems.map((item) => (
+                  <Link 
+                    key={item.label} 
+                    href={item.href} 
+                    className="text-3xl font-bold text-gray-400 hover:text-sky-400 transition-all"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="h-px bg-white/5 my-4" />
+                <Link href="/login" className="text-xl font-medium text-gray-500 hover:text-white">Staff Login</Link>
+                <Link 
+                  href="#contacts" 
+                  className="mt-8 w-full py-5 text-center rounded-2xl bg-sky-500 text-white font-black text-lg shadow-lg shadow-sky-500/20"
+                >
+                  Get Started
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
