@@ -7,10 +7,22 @@ import { ArrowLeft, Rocket, Clock, MessageSquare } from "lucide-react";
 
 export default function ComingSoonPage() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       <AnimatedBackground />
+
+      {/* Top Right Back Button */}
+      <div className="fixed top-4 right-4 md:top-8 md:right-8 z-50">
+        <Link 
+          href="/" 
+          className="flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 rounded-full bg-white/5 border border-white/10 text-white text-sm md:text-base font-bold hover:bg-white/10 transition-all backdrop-blur-md"
+        >
+          <ArrowLeft className="h-4 w-4" /> 
+          <span className="hidden sm:inline">Back to Home</span>
+          <span className="sm:hidden">Home</span>
+        </Link>
+      </div>
       
-      <main className="relative z-10 container mx-auto px-4 text-center">
+      <main className="relative z-10 w-full max-w-7xl px-4 py-20 flex flex-col items-center justify-center text-center">
         <div className="max-w-3xl mx-auto space-y-12">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold leading-none text-sky-400 bg-sky-400/10 ring-1 ring-inset ring-sky-400/20 animate-pulse">
@@ -45,12 +57,7 @@ export default function ComingSoonPage() {
 
           {/* Action Buttons */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-sky-500 hover:bg-sky-600 font-bold h-14 px-8 rounded-xl" asChild>
-              <Link href="/">
-                <ArrowLeft className="mr-2 h-5 w-5" /> Back to Home
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 bg-transparent text-white border-white/10 hover:bg-white/5 rounded-xl" asChild>
+            <Button size="lg" className="bg-sky-500 hover:bg-sky-600 font-bold h-14 px-10 rounded-xl shadow-[0_0_20px_rgba(14,165,233,0.3)]" asChild>
               <Link href="/#contacts">Contact Support</Link>
             </Button>
           </div>

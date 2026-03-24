@@ -1,4 +1,4 @@
-import NavBar from '@/components/NavBar'
+import NavBarWrapper from '@/components/NavBarWrapper'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={cn(geist.className, "bg-background text-foreground")} suppressHydrationWarning>
         <LoadingScreen />
         <MouseGlow />
-        <NavBar />
+        <NavBarWrapper />
         {children}
         <Footer />
         <SpeedInsights />

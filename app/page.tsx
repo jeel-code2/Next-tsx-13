@@ -53,7 +53,7 @@ export default function Home() {
 
       <main className="relative z-10">
         {/* Hero Section */}
-        <section id="home" className="container mx-auto px-4 min-h-screen flex items-center justify-center max-w-7xl pt-20">
+        <section id="home" className="container mx-auto px-4 min-h-screen flex items-center justify-center max-w-7xl">
           <div className="flex flex-col items-center text-center space-y-8">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium leading-none text-sky-400 bg-sky-400/10 ring-1 ring-inset ring-sky-400/20 animate-pulse">
               New: Software Enterprise Solutions Available
