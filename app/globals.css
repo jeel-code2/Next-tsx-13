@@ -178,6 +178,17 @@ a {
   body {
     @apply bg-background text-foreground;
   }
+  /* Reveal on Scroll Animations */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
   html {
     @apply font-sans;
     scroll-behavior: smooth;

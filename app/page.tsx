@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -8,6 +11,21 @@ import {
 import { cn } from "@/lib/utils";
 
 export default function Home() {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-item').forEach((el) => observer.observe(el));
+
+    return () => {
+      document.querySelectorAll('.reveal-item').forEach((el) => observer.unobserve(el));
+    }
+  }, []);
   const serviceList = [
     {
       title: "Pharmacy & Cosmetics",
@@ -131,7 +149,10 @@ export default function Home() {
                 About <span className="text-sky-400">JEEL Company</span>
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed">
-                Founded on the principle of accessibility, JEEL Company Limited has grown into a multi-service powerhouse. Our slogan, <strong className="text-white">"Service at your Convenience"</strong>, drives everything we do.
+                Founded on the principle of unparalleled accessibility, JEEL Company Limited has evolved from a local pharmaceutical provider into a diversified multi-service powerhouse. We bridge the gap between essential needs and elegant, reliable solutions.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-sky-400/30 pl-6 italic">
+                Our slogan, <strong className="text-white">"Service at your Convenience"</strong>, is the heartbeat of our operations, ensuring that every interaction with any JEEL sector is seamless, reliable, and tailored to the modern pace of life.
               </p>
               <div className="flex items-center gap-3 text-white font-medium">
                 <CheckCircle2 className="h-5 w-5 text-sky-400" />
@@ -152,7 +173,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
             {[
               {
                 icon: <Target className="h-10 w-10 text-sky-400" />,
@@ -174,6 +195,126 @@ export default function Home() {
                 <div className="mb-6">{card.icon}</div>
                 <h3 className="text-2xl font-bold text-white mb-4">{card.title}</h3>
                 <p className="text-gray-400 leading-relaxed italic">"{card.description}"</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mb-32 reveal-item">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Why Partner With <span className="text-sky-400">JEEL?</span></h3>
+              <p className="text-gray-400 max-w-xl mx-auto text-sm">Our commitment to excellence is built on four core pillars that define every transaction and service we provide.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { 
+                  title: "Unmatched Reliability", 
+                  desc: "A proven track record of consistent service delivery and operational uptime across all business sectors.",
+                  icon: <Shield className="h-5 w-5 text-sky-400" />
+                },
+                { 
+                  title: "Digital Innovation", 
+                  desc: "Utilizing modern technology to simplify agency banking and procurement, making services faster than ever.",
+                  icon: <Zap className="h-5 w-5 text-sky-400" />
+                },
+                { 
+                  title: "Community Growth", 
+                  desc: "We don't just serve neighborhoods; we grow with them by creating opportunities and improving local access.",
+                  icon: <Users className="h-5 w-5 text-sky-400" />
+                },
+                { 
+                  title: "Absolute Integrity", 
+                  desc: "From pharmaceutical authentication to transparent biddings, we maintain the highest ethical standards.",
+                  icon: <CheckCircle2 className="h-5 w-5 text-sky-400" />
+                }
+              ].map((item, i) => (
+                <div key={i} className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-sky-500/5 hover:border-sky-500/20 transition-all duration-300">
+                  <div className="mb-4 p-3 rounded-xl bg-sky-500/10 w-fit group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <h4 className="text-white font-bold mb-3">{item.title}</h4>
+                  <p className="text-gray-500 text-sm leading-relaxed group-hover:text-gray-400">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-32 border-y border-white/5 py-12 reveal-item">
+            {[
+              { label: "Business Sectors", value: "5+" },
+              { label: "Trusted Partners", value: "100+" },
+              { label: "Community impact", value: "10k+" },
+              { label: "Services Delivery", value: "24/7" }
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-3xl md:text-5xl font-black text-sky-400 mb-2">{stat.value}</div>
+                <div className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-bold">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Alternating Story Section (Roadmap) */}
+          <div className="relative space-y-32">
+            <div className="text-center space-y-4 mb-24">
+              <h3 className="text-3xl md:text-5xl font-bold text-white">The <span className="text-sky-400">JEEL Journey</span></h3>
+              <p className="text-gray-400 max-w-2xl mx-auto">From humble beginnings to a multi-sector legacy of trust and excellence.</p>
+            </div>
+
+            {/* Central Desktop Line */}
+            <div className="absolute left-1/2 top-48 bottom-0 w-0.5 border-l-2 border-dashed border-sky-400/20 hidden lg:block -translate-x-1/2" />
+
+            {[
+              {
+                title: "01. The Foundation",
+                subtitle: "The First Pharmacy",
+                content: "Our journey began with a single vision: making quality healthcare accessible. We established our first pharmacy in the heart of the community, setting the standard for pharmaceutical excellence and customer care that defines JEEL today.",
+                icon: <Zap className="h-10 w-10 text-sky-400" />,
+                imageSide: "right"
+              },
+              {
+                title: "02. Financial Inclusion",
+                subtitle: "Expanding Horizons",
+                content: "Recognizing the gap in local financial access, JEEL expanded into agency banking and financial services. We brought secure, convenient banking solutions to the neighborhood, empowering families to manage their futures with confidence.",
+                icon: <Globe className="h-10 w-10 text-sky-400" />,
+                imageSide: "left"
+              },
+              {
+                title: "03. Strategic Growth",
+                subtitle: "Tendering & Supplies",
+                content: "As we grew, so did our commitment to professional excellence. We launched our Tendering and Home Supplies sectors, bridging the gap between business opportunities and neighborhood needs with transparent, reliable processes.",
+                icon: <CheckCircle2 className="h-10 w-10 text-sky-400" />,
+                imageSide: "right"
+              },
+              {
+                title: "04. Future Focused",
+                subtitle: "The JEEL Ecosystem",
+                content: "Today, JEEL is more than a company—it is an ecosystem of convenience. We continue to innovate, adding new services and refining our existing ones to serve you better, every single day.",
+                icon: <Award className="h-10 w-10 text-sky-400" />,
+                imageSide: "left"
+              }
+            ].map((story, i) => (
+              <div key={i} className={cn(
+                "relative flex flex-col lg:items-center gap-12 lg:gap-24 reveal-item",
+                story.imageSide === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
+              )}>
+                {/* Pathway Marker (Desktop) */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center">
+                   <div className="h-4 w-4 bg-sky-500 rounded-full shadow-[0_0_15px_rgba(14,165,233,0.8)] outline outline-8 outline-sky-500/10" />
+                </div>
+
+                <div className="flex-1 space-y-6">
+                  <div className="inline-block text-sky-400 font-bold tracking-widest uppercase text-sm">{story.title}</div>
+                  <h4 className="text-3xl md:text-4xl font-bold text-white">{story.subtitle}</h4>
+                  <p className="text-gray-400 text-lg leading-relaxed">{story.content}</p>
+                </div>
+
+                <div className="flex-1 relative group h-full">
+                  <div className="aspect-[16/9] rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center p-8 overflow-hidden transition-all duration-500 group-hover:border-sky-500/30">
+                    <div className="absolute inset-0 bg-sky-500/5 blur-3xl group-hover:bg-sky-500/10 transition-all" />
+                    <div className="relative p-6 rounded-2xl bg-sky-500/10 border border-sky-500/20 transform group-hover:scale-110 transition-transform duration-500">
+                      {story.icon}
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
