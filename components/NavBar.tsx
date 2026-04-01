@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navItems = [
     { label: "Home", href: "#home" },
     { label: "Our Services", href: "#services" },
@@ -30,10 +32,10 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-transparent">
-      <div className="container flex h-20 items-center justify-between px-6 md:px-8 max-w-7xl mx-auto">
+      <div className="flex w-full h-20 items-center justify-between px-4 md:px-8 max-w-7xl mx-auto">
         <div className="flex items-center gap-12">
-          <Link href="#home" className="flex items-center space-x-2">
-            <span className="text-3xl font-black tracking-tighter text-sky-400">
+          <Link href="#home" className="flex items-center space-x-2 shrink-0">
+            <span className="text-2xl md:text-3xl font-black tracking-tighter text-sky-400">
               JEEL
             </span>
           </Link>
@@ -53,9 +55,9 @@ const Navbar = () => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <Link 
-            href="/login" 
+            href="/coming-soon" 
             className="group relative hidden md:flex text-sm font-semibold text-gray-300 hover:text-white px-4 py-2 transition-colors"
           >
             Staff Login
@@ -70,32 +72,40 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile Navigation */}
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden text-white bg-white/5 hover:bg-white/10 rounded-full h-12 w-12">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="md:hidden text-white bg-white/5 hover:bg-white/10 rounded-full h-11 w-11 shrink-0">
+                <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-slate-950/95 backdrop-blur-xl border-l border-white/10 text-white w-full sm:max-w-md">
-              <SheetHeader className="text-left">
-                <SheetTitle className="text-sky-400 text-2xl font-black">JEEL MENU</SheetTitle>
+            <SheetContent side="right" className="bg-slate-950/95 backdrop-blur-xl border-l border-white/10 text-white w-[280px] sm:w-[350px] p-6">
+              <SheetHeader className="text-left mb-8">
+                <SheetTitle className="text-sky-400 text-xl font-black">MENU</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-8 mt-16">
+              <nav className="flex flex-col gap-6">
                 {navItems.map((item) => (
                   <Link 
                     key={item.label} 
                     href={item.href} 
-                    className="text-3xl font-bold text-gray-400 hover:text-sky-400 transition-all"
+                    className="text-2xl font-bold text-gray-400 hover:text-sky-400 transition-all font-sans"
+                    onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="h-px bg-white/5 my-4" />
-                <Link href="/login" className="text-xl font-medium text-gray-500 hover:text-white">Staff Login</Link>
+                <div className="h-px bg-white/5 my-2" />
+                <Link 
+                  href="/coming-soon" 
+                  className="text-lg font-medium text-gray-500 hover:text-white"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Staff Login
+                </Link>
                 <Link 
                   href="#contacts" 
-                  className="mt-8 w-full py-5 text-center rounded-2xl bg-sky-500 text-white font-black text-lg shadow-lg shadow-sky-500/20"
+                  className="mt-6 w-full py-4 text-center rounded-xl bg-sky-500 text-white font-black text-base shadow-lg shadow-sky-500/20"
+                  onClick={() => setIsOpen(false)}
                 >
                   Get Started
                 </Link>

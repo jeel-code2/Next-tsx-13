@@ -259,8 +259,8 @@ export default function Home() {
               <p className="text-gray-400 max-w-2xl mx-auto">From humble beginnings to a multi-sector legacy of trust and excellence.</p>
             </div>
 
-            {/* Central Desktop Line */}
-            <div className="absolute left-1/2 top-48 bottom-0 w-0.5 border-l-2 border-dashed border-sky-400/20 hidden lg:block -translate-x-1/2" />
+            {/* Central Line (Mobile: Left, Desktop: Center) */}
+            <div className="absolute left-6 lg:left-1/2 top-48 bottom-0 w-0.5 border-l-2 border-dashed border-sky-400/20 -translate-x-1/2" />
 
             {[
               {
@@ -293,11 +293,11 @@ export default function Home() {
               }
             ].map((story, i) => (
               <div key={i} className={cn(
-                "relative flex flex-col lg:items-center gap-12 lg:gap-24 reveal-item",
+                "relative flex flex-col items-start lg:items-center text-left gap-12 lg:gap-24 reveal-item pl-12 lg:pl-0",
                 story.imageSide === "left" ? "lg:flex-row-reverse" : "lg:flex-row"
               )}>
-                {/* Pathway Marker (Desktop) */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center">
+                {/* Pathway Marker (Mobile: Left, Desktop: Center) */}
+                <div className="absolute left-6 lg:left-1/2 top-6 lg:top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
                    <div className="h-4 w-4 bg-sky-500 rounded-full shadow-[0_0_15px_rgba(14,165,233,0.8)] outline outline-8 outline-sky-500/10" />
                 </div>
 
@@ -419,6 +419,68 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="bg-black/80 border-t border-white/5 py-20">
+          <div className="container mx-auto px-4 max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+              <div className="col-span-1 md:col-span-1 space-y-6">
+                <Link href="#home" className="inline-block">
+                  <span className="text-3xl font-black text-sky-400">JEEL</span>
+                </Link>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  A multi-sector powerhouse dedicated to bringing essential services closer to you through technical innovation and exceptional customer care.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <h4 className="text-white font-bold uppercase tracking-widest text-xs">Quick Links</h4>
+                <ul className="space-y-4">
+                  {['Home', 'Services', 'About', 'Contacts'].map((item) => (
+                    <li key={item}>
+                      <Link href={`#${item.toLowerCase()}`} className="text-gray-500 hover:text-sky-400 text-sm transition-colors uppercase tracking-wider">
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-6">
+                <h4 className="text-white font-bold uppercase tracking-widest text-xs">Legal</h4>
+                <ul className="space-y-4 text-gray-500 text-sm italic">
+                  <li>Terms of Service</li>
+                  <li>Privacy Policy</li>
+                  <li>Cookies Policy</li>
+                </ul>
+              </div>
+
+              <div className="space-y-6">
+                <h4 className="text-white font-bold uppercase tracking-widest text-xs">Newsletter</h4>
+                <p className="text-gray-500 text-sm">Stay updated with our newest services and community projects.</p>
+                <div className="flex gap-2">
+                  <input type="email" placeholder="Email" className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:ring-1 focus:ring-sky-400" />
+                  <Button size="icon" className="bg-sky-500 hover:bg-sky-600 rounded-lg shrink-0">
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+              <p className="text-gray-500 text-xs uppercase tracking-widest">
+                © {new Date().getFullYear()} JEEL Company Ltd. Service at your Convenience
+              </p>
+              <div className="flex items-center gap-6">
+                {['Twitter', 'LinkedIn', 'Instagram'].map((social) => (
+                  <span key={social} className="text-gray-500 hover:text-sky-400 text-xs font-bold cursor-pointer transition-colors uppercase tracking-tighter">
+                    {social}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );
